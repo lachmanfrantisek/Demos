@@ -74,7 +74,7 @@ buildah_slowest() {
     echo_color "
 In this example, we are not leaking any information from the host into the
 container. The container is fully locked down, and could potentially be run
-with separated use namespace. Meaning the build would not be happening as root.
+with separated user namespace. Meaning the build would not be happening as root.
 
 But this is the slowest way to build containers, since the container starts with
 no containers/storage, and needs to pull down all image content used in the
@@ -166,7 +166,7 @@ Build a container image with shared read/only containers/storage.
     sudo mkdir -p $MEDIUM
     sudo chcon -t container_file_t $MEDIUM
     read_color "    sudo podman run --device /dev/fuse -ti -v $PWD/Dockerfile:/Dockerfile:Z -v /var/lib/containers/storage:/var/lib/shared:ro -v $MEDIUM:/var/lib/containers quay.io/buildah/stable buildah bud /"
-    sudo /bin/time podman -o /tmp/buildah_medium_bud.txt --format %e run --device /dev/fuse -ti -v $PWD/Dockerfile:/Dockerfile:Z -v /var/lib/containers/storage:/var/lib/shared:ro -v $MEDIUM:/var/lib/containers quay.io/buildah/stable buildah bud /
+    sudo /bin/time -o /tmp/buildah_medium_bud.txt --format %e podman run --device /dev/fuse -ti -v $PWD/Dockerfile:/Dockerfile:Z -v /var/lib/containers/storage:/var/lib/shared:ro -v $MEDIUM:/var/lib/containers quay.io/buildah/stable buildah bud /
 
     echo_color "
     Completed in $(cat /tmp/buildah_medium_bud.txt) seconds
