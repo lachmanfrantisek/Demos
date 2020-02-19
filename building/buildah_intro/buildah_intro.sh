@@ -129,11 +129,14 @@ buildah_using_from_scratch() {
     read -p "Enter to continue"
 
     echo
-    echo_color "Install Fedora 29 bash and coreutils into the container from the host."
+    echo_color "Install Fedora 31 bash and coreutils into the container from the host."
     echo_color "Only bash and coreutils packages and their dependencies will be installed."
     echo
-    read_red_color "$ sudo dnf install --installroot \$scratchmnt --release 29 bash coreutils --setopt install_weak_deps=false -y"
-    sudo dnf install --installroot $scratchmnt --release 29 bash coreutils --setopt install_weak_deps=false -y
+    read_red_color "$ sudo dnf install --nodocs --installroot \$scratchmnt --release 31 bash coreutils --setopt install_weak_deps=false -y"
+    sudo dnf install --nodocs --installroot $scratchmnt --release 31 bash coreutils --setopt install_weak_deps=false -y
+    echo
+    read_red_color "$ sudo dnf clean all --installroot \$scratchmnt -y"
+    sudo dnf clean all --installroot $scratchmnt -y
 
 
     echo
@@ -188,8 +191,8 @@ EOF
 
     echo
     echo
-    read_red_color "$ sudo buildah config --author \"buildahdemo\" --label name=fedora29-bashecho \$newcontainer"
-    sudo buildah config --author "buildahdemo at redhat.com" --label name=fedora29-bashecho $newcontainer
+    read_red_color "$ sudo buildah config --author \"buildahdemo\" --label name=fedora31-bashecho \$newcontainer"
+    sudo buildah config --author "buildahdemo at redhat.com" --label name=fedora31-bashecho $newcontainer
 
     echo
     echo_color "Let's inspect the container looking for our new configs"
