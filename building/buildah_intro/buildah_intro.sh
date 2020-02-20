@@ -105,14 +105,14 @@ buildah_using_from_scratch() {
 
     echo_color "Create an empty image from 'scratch'"
     echo
-    read_color "$ newcontainer=\$(sudo buildah from scratch)"
+    read_red_color "$ newcontainer=\$(sudo buildah from scratch)"
     newcontainer=$(sudo buildah from scratch)
     echo
 
     echo
     echo_color "Now mount the container saving the mount point"
     echo
-    read_color "$ scratchmnt=\$(sudo buildah mount \$newcontainer)"
+    read_red_color "$ scratchmnt=\$(sudo buildah mount \$newcontainer)"
     scratchmnt=$(sudo buildah mount $newcontainer)
 
     echo
