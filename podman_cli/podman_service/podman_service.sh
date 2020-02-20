@@ -1,9 +1,10 @@
 #!/usr/bin/env sh
 
-# buildah_intro.sh demo script.
-# This script will demonstrate at an introductory level
-# for Buildah basic concepts and uses.  Also requires
-# the Docker and Podman packages to be installed.
+# podman_service.sh demo script.
+# This script will demonstrate the usage
+# of the podman apiv2
+# from docker client using unix socket.
+# Requires the Docker and Podman packages to be installed.
 
  
 # Setting up some colors for helping read the demo output.
